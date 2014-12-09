@@ -1,0 +1,54 @@
+<% if !session[:user] %>
+<div class=container>
+  <h2>Sign up</h2>
+  <form method=post action="/signup" id=signup>
+    <input type=text placeholder="Email" id=email name="user[email]"></br>
+    <input type=password placeholder="Password" id=password name="user[password]"></br>
+    <input type=submit value="Sign up" class="btn btn-primary">
+  </form></br>
+</div>
+
+<div class=container id=login>
+  <h2>Log in</h2>
+  <form method=post action="/login">
+    <input type=text placeholder="Email" name="login[email]"></br>
+    <input type=password placeholder="Password" name="login[password]"></br>
+    <input type=submit value="Log in" class="btn btn-primary">
+  </form></br>
+</div>
+<% end %>
+
+
+<% if session[:user] %>
+
+<div class=container>
+  <div class="row">
+    <div class="span4 collapse-group">
+      <h2><a href="#">Create survey</a></h2>
+       <div class="collapse">
+          <form id="create_survey" method=post action="/create">
+            <p class=big-title>Survey title:</p>
+            <input type=text class=big-title name=title></br>
+            </br>
+            <p>Press tab to the next field, enter for a new question</p>
+            <p>Question:</p>
+            <input type=text name="questions[0]" class="tab_text active-text"></br>
+            </br>
+            <input type=submit value=Create id="submit" class="btn btn-primary">
+          </form>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+<div class=container>
+  <h2>Current surveys</h2>
+  <ul>
+    <% Survey.all.each do |s| %>
+      <li><a href='/survey/<%= s.id %>'><%= s.title %></a> by <%= User.find(s.user_id).email %></li>
+    <% end %>
+  </ul>
+</div>
+
+<% end %>

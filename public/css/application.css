@@ -1,0 +1,45 @@
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: none;
+  background: rgba(200,200,200,0.8);
+  border-radius: 5px;
+}
+th {
+  text-align: left;
+}
+
+li {
+  list-style: none;
+}
+
+.span4 {
+  padding: 10px 20px;
+}
+
+.gorilla {
+  display:block;
+  width:100%;
+  margin: 0 auto;
+  position:absolute;
+  z-index:-999;
+  border:none;
+  background:none;
+}
+
+.gorilla img {
+  display:block;
+  width:auto;
+  margin: 0 auto;
+}
+
+.answer {
+  margin-left: 32px;
+}
+
+.big-title {
+  font-size: 32px;
+  height: auto;
+  width: 17em;
+}
