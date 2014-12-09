@@ -12,9 +12,14 @@ $(document).ready(function() {
   });
 
   var button = "<input type=submit value=Create id=submit class='btn btn-primary'>";
+  var glyph = '&nbsp;&nbsp;<span class="glyphicon glyphicon-remove-circle remove" aria-hidden="true"></span>';
 
   var q = 0;
   var c = 0;
+
+  $(document).on("click", ".remove", function(e) {
+    $(this).closest("div").remove();
+  });
 
   $(document).on("keydown",".tab_text",function(e) {
     var code = e.keyCode || e.which;
@@ -24,9 +29,9 @@ $(document).ready(function() {
       e.preventDefault();
       q++;
       $("#submit").remove();
-      $('<p>Question:</p><input type=text class="tab_text active-text" name="questions[' + q + ']"></br></br>').appendTo($("#create_survey"));
+      $('<div><p>Question:</p><input type=text class="tab_text active-text" name="questions[' + q + ']">' + glyph + '</br></br></div>').appendTo($("#create_survey"));
       $(this).removeClass("active-text");
-      $(this).siblings().next().focus();
+      $(this).closest("div").next().find("input").focus();
       $(button).appendTo($("#create_survey"));
       c = 0;
     }
@@ -34,7 +39,7 @@ $(document).ready(function() {
     // adds new choice
     if (code == 9 && $(this).hasClass("active-text")) {
       $("#submit").remove();
-      $('<p class=answer>Answer:</p><input type=text class="tab_text answer active-text" name="choices[' + q + '][' + c + ']"></br></br>' + button).appendTo($("#create_survey"));
+      $('<div><p class=answer>Answer:</p><input type=text class="tab_text answer active-text" name="choices[' + q + '][' + c + ']">' + glyph + '</br></br></div>' + button).appendTo($("#create_survey"));
       $(this).removeClass("active-text");
       c++;
     }

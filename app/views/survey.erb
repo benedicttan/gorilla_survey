@@ -2,12 +2,12 @@
   <h2>Survey title: <%= @survey.title %></h2>
   <h3>by <%= User.find(@survey.user_id).email %></h3>
   </br>
-  <form method=post action="/answer">
+  <form method=post action="/answer" style=padding-left:24px>
     <% @survey.questions.each do |q| %>
       <label><%= q.body %></label></br>
       <% q.choices.each do |c| %>
         <input type=radio name=choices[<%= q.id %>] value=<%= c.id %>><%= c.body %></br>
-      <% end %>
+      <% end %></br>
     <% end %>
     </br>
     <input type=hidden name="survey_id" value=<%=@survey.id%>>
